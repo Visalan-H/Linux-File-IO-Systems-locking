@@ -34,7 +34,8 @@ in = open("filecopy.c", O_RDONLY);
 out = open("file.out", O_WRONLY|O_CREAT, S_IRUSR|S_IWUSR);
 while((nread = read(in,block,sizeof(block))) > 0)
 write(out,block,nread);
-exit(0);}
+exit(0);
+}
 ```
 
 ## 2.To Write a C program that illustrates files locking
@@ -49,24 +50,18 @@ int main (int argc, char* argv[])
  int fd;
  struct flock lock;
  printf ("opening %s\n", file);
- /* Open a file descriptor to the file. */
  fd = open (file, O_WRONLY);
-// acquire shared lock
 if (flock(fd, LOCK_SH) == -1) {
     printf("error");
 }else
 {printf("Acquiring shared lock using flock");
 }
 getchar();
-// non-atomically upgrade to exclusive lock
-// do it in non-blocking mode, i.e. fail if can't upgrade immediately
 if (flock(fd, LOCK_EX | LOCK_NB) == -1) {
     printf("error");
 }else
 {printf("Acquiring exclusive lock using flock");}
 getchar();
-// release lock
-// lock is also released automatically when close() is called or process exits
 if (flock(fd, LOCK_UN) == -1) {
     printf("error");
 }else{
@@ -78,9 +73,12 @@ return 0;
 }
 ```
 ## OUTPUT
+## 1.To Write a C program that illustrates files copying 
 
+![image](https://github.com/user-attachments/assets/acd2dc9c-6b1e-46bb-9bc7-f8b8138a9106)
 
-
+## 2.To Write a C program that illustrates files locking
+![image](https://github.com/user-attachments/assets/e28141d6-03f9-4b7b-a145-dfdb03047cfa)
 
 
 # RESULT:
